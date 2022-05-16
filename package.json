@@ -1,0 +1,34 @@
+{
+  "name": "edhi_validation",
+  "version": "0.0.1",
+  "description": "Simple validation",
+  "scripts": {
+    "clean": "if exist dist ( rd /S /Q dist)",
+    "link": "npm run build && npm run clean && npm link",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "publish": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paneedovanie/edhi_validation.git"
+  },
+  "keywords": [
+    "nodejs",
+    "simple",
+    "validation"
+  ],
+  "author": "Edovanie Hiramis",
+  "license": "ISC",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "bugs": {
+    "url": "https://github.com/paneedovanie/edhi_validation/issues"
+  },
+  "homepage": "https://github.com/paneedovanie/edhi_validation#readme"
+}
