@@ -3,7 +3,10 @@ import { InputType } from './types';
 export const validateAll = (
 	Schema: { new (): any },
 	input: InputType,
-	showData?: boolean
+	options?: {
+		showData?: boolean;
+		singleError?: boolean;
+	}
 ) => {
 	const schema = new Schema();
 	const errors: { [key: string]: any } = {};
@@ -15,18 +18,22 @@ export const validateAll = (
 			continue;
 		}
 
-		if (!!input[key]) {
-			const result = schema[key].validate(input, key);
+		const defaultValue: any = schema[key]._options?.default;
+
+		if (!!input[key] || (!input[key] && !defaultValue)) {
+			const result = schema[key].validate(input, key, {
+				singleError: options?.singleError,
+			});
 
 			if (!!result.length) {
 				errors[key] = result;
 			}
-		} else if (schema[key]._options.default) {
-			input[key] = schema[key]._options.default;
+		} else {
+			input[key] = defaultValue;
 		}
 	}
 
-	if (!showData) {
+	if (!options?.showData) {
 		return !!Object.keys(errors).length ? errors : undefined;
 	} else {
 		return {

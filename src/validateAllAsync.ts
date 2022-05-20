@@ -3,7 +3,11 @@ import { InputType } from './types';
 export const validateAllAsync = async (
 	Schema: { new (): any },
 	input: InputType,
-	showData?: boolean
+	showData?: boolean,
+	options?: {
+		showData?: boolean;
+		singleError?: boolean;
+	}
 ) => {
 	const schema = new Schema();
 	const errors: { [key: string]: any } = {};
@@ -15,14 +19,18 @@ export const validateAllAsync = async (
 			continue;
 		}
 
-		if (!!input[key]) {
-			const result = schema[key].validate(input, key);
+		const defaultValue: any = schema[key]._options?.default;
+
+		if (!!input[key] || (!input[key] && !defaultValue)) {
+			const result = await schema[key].validateAsync(input, key, {
+				singleError: options?.singleError,
+			});
 
 			if (!!result.length) {
 				errors[key] = result;
 			}
-		} else if (schema[key]._options.default) {
-			input[key] = schema[key]._options.default;
+		} else {
+			input[key] = defaultValue;
 		}
 	}
 

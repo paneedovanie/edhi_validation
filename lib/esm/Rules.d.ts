@@ -1,26 +1,27 @@
-import { ValidatorType, InputType } from './types';
-export default class Rules {
+import { ValidatorType } from './types';
+import * as Core from './core';
+import * as Rule from './is';
+declare class Rules {
     _options?: {
-        async?: boolean | undefined;
         name?: string | undefined;
         default?: any;
     } | undefined;
     _validators: ValidatorType[];
     constructor(_options?: {
-        async?: boolean | undefined;
         name?: string | undefined;
         default?: any;
     } | undefined);
-    isRequired(message?: string | ((name: string) => string)): this;
-    isString(message?: string | ((name: string) => string)): this;
-    isNumber(message?: string | ((name: string) => string)): this;
-    isBoolean(message?: string | ((name: string) => string)): this;
-    isObject(message?: string | ((name: string) => string)): this;
-    isArray(message?: string | ((name: string) => string)): this;
-    min(minValue: number, message?: string | ((name: string) => string)): this;
-    max(maxValue: number, message?: string | ((name: string) => string)): this;
-    isEmail(message?: string | ((name: string) => string)): this;
-    newRule(condition?: (values: InputType, key: string) => boolean | Promise<boolean>, message?: string | ((name: string) => string)): this;
-    validate(values: InputType, key: string): (string | undefined)[];
-    validateAsync(values: InputType, key: string): Promise<string[]>;
+    newRule: typeof Core.newRule;
+    validate: typeof Core.validate;
+    validateAsync: typeof Core.validateAsync;
+    isRequired: typeof Rule.isRequired;
+    isString: typeof Rule.isString;
+    isNumber: typeof Rule.isNumber;
+    isArray: typeof Rule.isArray;
+    isBoolean: typeof Rule.isBoolean;
+    isEmail: typeof Rule.isEmail;
+    isMax: typeof Rule.isMax;
+    isMin: typeof Rule.isMin;
+    isObject: typeof Rule.isObject;
 }
+export default Rules;
