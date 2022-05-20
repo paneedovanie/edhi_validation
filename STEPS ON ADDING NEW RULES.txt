@@ -1,0 +1,22 @@
+1. Add new file inside "/src/is/"
+2. The file must export a function
+
+  # Rule format
+  #
+  # export function <RULE_NAME>(
+  #	  this: any,
+  #	  message?: string | ((name: string) => string)
+  # ) {
+  #	  return this.newRule(
+  #		  (value: any) => <VALIDATION_CONDITION>,
+  #		  message || ((name: string) => `<ERROR_MESSAGE>`)
+  #	  );
+  # }
+
+3. Export the file to "/src/is/index.ts"
+
+  # export * from './<FILE_NAME>'
+
+4. Add the new rule to Rules class as a method
+
+  # <RULE_NAME> = Rule.<RULE_NAME>;

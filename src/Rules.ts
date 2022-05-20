@@ -10,6 +10,8 @@ class Rules {
 	newRule = Core.newRule;
 	validate = Core.validate;
 	validateAsync = Core.validateAsync;
+
+	// Add new rules here
 	isRequired = Rule.isRequired;
 	isString = Rule.isString;
 	isNumber = Rule.isNumber;

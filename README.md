@@ -1,5 +1,7 @@
 # Validation
 
+Simple, easy to use and small size package for validation
+
 ## Installation
 
 ```
@@ -66,20 +68,24 @@ The arrangement of rules from schema will be the arrangement of error massages
 
 ## Methods
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">newRule(condition: (value: any, values: InputType) => boolean, message: string | (name: string) => string)</p>
+- newRule(condition: (value: any, values: InputType) => boolean, message: string
+  | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isRequired(message: string | (name: string) => string)</p>
+- isRequired(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isNumber(message: string | (name: string) => string)</p>
+- isNumber(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isBoolean(message: string | (name: string) => string)</p>
+- isBoolean(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isEmail(message: string | (name: string) => string)</p>
+- isEmail(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isObject(message: string | (name: string) => string)</p>
+- isObject(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isArray(message: string | (name: string) => string)</p>
+- isArray(message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isMin(minValue: number, message: string | (name: string) => string)</p>
+- isMin(minValue: number, message: string | (name: string) => string)
 
-<p style="color: red; background-color: #f5f5f5; padding: 5px; border-radius: 3px;">isMax(maxValue: number, message: string | (name: string) => string)</p>
+- isMax(maxValue: number, message: string | (name: string) => string)
+
+Help me improve this package
+[GitHub Repository](https://github.com/paneedovanie/edhi_validation)
