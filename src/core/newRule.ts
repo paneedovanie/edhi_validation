@@ -5,44 +5,37 @@ export function newRule(
 	condition?: (value: any, values: InputType) => boolean | Promise<boolean>,
 	message?: string | ((name: string) => string)
 ) {
-	const Validator =
-		condition?.constructor.name === 'AsyncFunction'
-			? async (
-					values: InputType,
-					key: string,
-					name?: string
-			  ): Promise<ValidatorResultType> => {
-					let error = undefined;
+	const Validator = this._options?.async
+		? async (
+				values: InputType,
+				key: string,
+				name?: string
+		  ): Promise<ValidatorResultType> => {
+				let error = undefined;
 
-					if (!condition || (await condition(values[key], values))) {
-						return { values };
-					}
+				if (!condition || (await condition(values[key], values))) {
+					return { values };
+				}
 
-					if (!!message) {
-						error =
-							typeof message === 'string' ? message : message(name || key);
-					}
+				if (!!message) {
+					error = typeof message === 'string' ? message : message(name || key);
+				}
 
-					return { error, values };
-			  }
-			: (
-					values: InputType,
-					key: string,
-					name?: string
-			  ): ValidatorResultType => {
-					let error = undefined;
+				return { error, values };
+		  }
+		: (values: InputType, key: string, name?: string): ValidatorResultType => {
+				let error = undefined;
 
-					if (!condition || condition(values[key], values)) {
-						return { values };
-					}
+				if (!condition || condition(values[key], values)) {
+					return { values };
+				}
 
-					if (!!message) {
-						error =
-							typeof message === 'string' ? message : message(name || key);
-					}
+				if (!!message) {
+					error = typeof message === 'string' ? message : message(name || key);
+				}
 
-					return { error, values };
-			  };
+				return { error, values };
+		  };
 
 	this._validators.push(Validator);
 

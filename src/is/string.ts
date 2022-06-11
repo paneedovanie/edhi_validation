@@ -3,7 +3,7 @@ export function isString(
 	message?: string | ((name: string) => string)
 ) {
 	return this.newRule(
-		(value: any) => typeof value === 'string',
+		(value: any) => !value || typeof value === 'string',
 		message || ((name: string) => `The field ${name} must be a string`)
 	);
 }

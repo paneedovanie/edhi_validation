@@ -3,7 +3,7 @@ export function isNumber(
 	message?: string | ((name: string) => string)
 ) {
 	return this.newRule(
-		(value: any) => typeof value === 'number',
+		(value: any) => !value || typeof value === 'number',
 		message || ((name: string) => `The field ${name} must be a number`)
 	);
 }

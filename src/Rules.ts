@@ -5,7 +5,9 @@ import * as Rule from './is';
 class Rules {
 	public _validators: ValidatorType[] = [];
 
-	constructor(public _options?: { name?: string; default?: any }) {}
+	constructor(
+		public _options?: { name?: string; default?: any; async?: boolean }
+	) {}
 
 	newRule = Core.newRule;
 	validate = Core.validate;

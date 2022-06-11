@@ -3,7 +3,7 @@ export function isObject(
 	message?: string | ((name: string) => string)
 ) {
 	return this.newRule(
-		(value: any) => typeof value === 'object',
+		(value: any) => !value || typeof value === 'object',
 		message || ((name: string) => `The field ${name} must be an object`)
 	);
 }

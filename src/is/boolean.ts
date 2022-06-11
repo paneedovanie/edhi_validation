@@ -3,7 +3,7 @@ export function isBoolean(
 	message?: string | ((name: string) => string)
 ) {
 	return this.newRule(
-		(value: any) => typeof value === 'boolean',
+		(value: any) => !value || typeof value === 'boolean',
 		message || ((name: string) => `The field ${name} must be a boolean`)
 	);
 }

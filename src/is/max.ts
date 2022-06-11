@@ -5,6 +5,7 @@ export function isMax(
 ) {
 	return this.newRule(
 		(value: any) =>
+			!value ||
 			(typeof value === 'string' && value.length <= maxValue) ||
 			(typeof value === 'number' && value <= maxValue),
 		message || ((name: string) => `The field ${name} maximum is ${maxValue}`)
